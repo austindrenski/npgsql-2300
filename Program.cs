@@ -1,5 +1,6 @@
 ﻿using System;
 using Npgsql;
+using NpgsqlTypes;
 
 // ReSharper disable PossibleNullReferenceException
 namespace npgsql_2300
@@ -25,7 +26,7 @@ namespace npgsql_2300
 
                 using (var cmd = new NpgsqlCommand("INSERT INTO some_table (some_time) VALUES (@p1);", conn))
                 {
-                    cmd.Parameters.AddWithValue("@p1", expected);
+                    cmd.Parameters.AddWithValue("@p1", NpgsqlDbType.Time, expected);
                     cmd.ExecuteNonQuery();
                 }
 
